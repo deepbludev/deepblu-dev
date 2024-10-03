@@ -1,7 +1,11 @@
 'use client'
 
 import { Dialog, Transition } from '@headlessui/react'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock'
 import { Fragment, useState, useEffect, useRef } from 'react'
 import Link from './Link'
 import headerNavLinks from '@/data/headerNavLinks'
@@ -11,7 +15,7 @@ const MobileNav = () => {
   const navRef = useRef(null)
 
   const onToggleNav = () => {
-    setNavShow((status) => {
+    setNavShow(status => {
       if (status) {
         enableBodyScroll(navRef.current)
       } else {
@@ -28,7 +32,11 @@ const MobileNav = () => {
 
   return (
     <>
-      <button aria-label="Toggle Menu" onClick={onToggleNav} className="sm:hidden">
+      <button
+        aria-label="Toggle Menu"
+        onClick={onToggleNav}
+        className="sm:hidden"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -72,7 +80,7 @@ const MobileNav = () => {
                 ref={navRef}
                 className="mt-8 flex h-full basis-0 flex-col items-start overflow-y-auto pl-12 pt-2 text-left"
               >
-                {headerNavLinks.map((link) => (
+                {headerNavLinks.map(link => (
                   <Link
                     key={link.title}
                     href={link.href}
@@ -89,7 +97,11 @@ const MobileNav = () => {
                 aria-label="Toggle Menu"
                 onClick={onToggleNav}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
                   <path
                     fillRule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"

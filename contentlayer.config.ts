@@ -1,4 +1,8 @@
-import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
+import {
+  defineDocumentType,
+  ComputedFields,
+  makeSource,
+} from 'contentlayer2/source-files'
 import { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
 import { slug } from 'github-slugger'
@@ -41,20 +45,20 @@ const icon = fromHtmlIsomorphic(
 )
 
 const computedFields: ComputedFields = {
-  readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
+  readingTime: { type: 'json', resolve: doc => readingTime(doc.body.raw) },
   slug: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
+    resolve: doc => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
   },
   path: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath,
+    resolve: doc => doc._raw.flattenedPath,
   },
   filePath: {
     type: 'string',
-    resolve: (doc) => doc._raw.sourceFilePath,
+    resolve: doc => doc._raw.sourceFilePath,
   },
-  toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) },
+  toc: { type: 'json', resolve: doc => extractTocHeadings(doc.body.raw) },
 }
 
 /**
@@ -62,9 +66,9 @@ const computedFields: ComputedFields = {
  */
 function createTagCount(allBlogs) {
   const tagCount: Record<string, number> = {}
-  allBlogs.forEach((file) => {
+  allBlogs.forEach(file => {
     if (file.tags && (!isProduction || file.draft !== true)) {
-      file.tags.forEach((tag) => {
+      file.tags.forEach(tag => {
         const formattedTag = slug(tag)
         if (formattedTag in tagCount) {
           tagCount[formattedTag] += 1
@@ -111,7 +115,7 @@ export const Blog = defineDocumentType(() => ({
     ...computedFields,
     structuredData: {
       type: 'json',
-      resolve: (doc) => ({
+      resolve: doc => ({
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
         headline: doc.title,
@@ -174,7 +178,7 @@ export default makeSource({
       rehypePresetMinify,
     ],
   },
-  onSuccess: async (importData) => {
+  onSuccess: async importData => {
     const { allBlogs } = await importData()
     createTagCount(allBlogs)
     createSearchIndex(allBlogs)

@@ -32,13 +32,20 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
     <div className="space-y-2 pb-8 pt-6 md:space-y-5">
       <nav className="flex justify-between">
         {!prevPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
+          <button
+            className="cursor-auto disabled:opacity-50"
+            disabled={!prevPage}
+          >
             Previous
           </button>
         )}
         {prevPage && (
           <Link
-            href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
+            href={
+              currentPage - 1 === 1
+                ? `/${basePath}/`
+                : `/${basePath}/page/${currentPage - 1}`
+            }
             rel="prev"
           >
             Previous
@@ -48,7 +55,10 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
           {currentPage} of {totalPages}
         </span>
         {!nextPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
+          <button
+            className="cursor-auto disabled:opacity-50"
+            disabled={!nextPage}
+          >
             Next
           </button>
         )}
@@ -73,7 +83,8 @@ export default function ListLayoutWithTags({
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
 
-  const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
+  const displayPosts =
+    initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
     <>
@@ -87,7 +98,9 @@ export default function ListLayoutWithTags({
           <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
             <div className="px-6 py-4">
               {pathname.startsWith('/blog') ? (
-                <h3 className="font-bold uppercase text-primary-500">All Posts</h3>
+                <h3 className="font-bold uppercase text-primary-500">
+                  All Posts
+                </h3>
               ) : (
                 <Link
                   href={`/blog`}
@@ -97,7 +110,7 @@ export default function ListLayoutWithTags({
                 </Link>
               )}
               <ul>
-                {sortedTags.map((t) => {
+                {sortedTags.map(t => {
                   return (
                     <li key={t} className="my-3">
                       {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
@@ -121,7 +134,7 @@ export default function ListLayoutWithTags({
           </div>
           <div>
             <ul>
-              {displayPosts.map((post) => {
+              {displayPosts.map(post => {
                 const { path, date, title, summary, tags } = post
                 return (
                   <li key={path} className="py-5">
@@ -137,12 +150,15 @@ export default function ListLayoutWithTags({
                       <div className="space-y-3">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                            <Link
+                              href={`/${path}`}
+                              className="text-gray-900 dark:text-gray-100"
+                            >
                               {title}
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
-                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                            {tags?.map(tag => <Tag key={tag} text={tag} />)}
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
@@ -155,7 +171,10 @@ export default function ListLayoutWithTags({
               })}
             </ul>
             {pagination && pagination.totalPages > 1 && (
-              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+              <Pagination
+                currentPage={pagination.currentPage}
+                totalPages={pagination.totalPages}
+              />
             )}
           </div>
         </div>

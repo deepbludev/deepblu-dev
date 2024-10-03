@@ -9,7 +9,9 @@
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx}\""
   },
   "dependencies": {
     "@headlessui/react": "1.7.19",
