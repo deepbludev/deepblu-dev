@@ -1,12 +1,14 @@
-import Link from '@/components/Link'
-import Tag from '@/components/Tag'
-import siteMetadata from '@/data/siteMetadata'
-import { formatDate } from 'pliny/utils/formatDate'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
+import Link from "@/components/Link"
+import Tag from "@/components/Tag"
+import siteMetadata from "@/data/siteMetadata"
+import { formatDate } from "pliny/utils/formatDate"
+import NewsletterForm from "pliny/ui/NewsletterForm"
+import { CoreContent } from "pliny/utils/contentlayer"
+import type { Blog } from "contentlayer/generated"
 
 const MAX_DISPLAY = 5
 
-export default function Home({ posts }) {
+export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -19,8 +21,8 @@ export default function Home({ posts }) {
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {!posts.length && 'No posts found.'}
-          {posts.slice(0, MAX_DISPLAY).map(post => {
+          {!posts.length && "No posts found."}
+          {posts.slice(0, MAX_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags } = post
             return (
               <li key={slug} className="py-12">
@@ -46,7 +48,7 @@ export default function Home({ posts }) {
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
-                            {tags.map(tag => (
+                            {tags.map((tag) => (
                               <Tag key={tag} text={tag} />
                             ))}
                           </div>

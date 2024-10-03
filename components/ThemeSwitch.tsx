@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { Fragment, useEffect, useState } from 'react'
-import { useTheme } from 'next-themes'
-import { Menu, RadioGroup, Transition } from '@headlessui/react'
+import { Fragment, useEffect, useState } from "react"
+import { useTheme } from "next-themes"
+import { Menu, RadioGroup, Transition } from "@headlessui/react"
 
 const Sun = () => (
   <svg
@@ -59,7 +59,7 @@ const ThemeSwitch = () => {
         <div className="flex items-center justify-center hover:text-primary-500 dark:hover:text-primary-400">
           <Menu.Button aria-label="Theme switcher">
             {mounted ? (
-              resolvedTheme === 'dark' ? (
+              resolvedTheme === "dark" ? (
                 <Moon />
               ) : (
                 <Sun />
@@ -86,7 +86,7 @@ const ThemeSwitch = () => {
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? 'bg-primary-600 text-white' : ''
+                          active ? "bg-primary-600 text-white" : ""
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">
@@ -102,7 +102,7 @@ const ThemeSwitch = () => {
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? 'bg-primary-600 text-white' : ''
+                          active ? "bg-primary-600 text-white" : ""
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">
@@ -118,7 +118,7 @@ const ThemeSwitch = () => {
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? 'bg-primary-600 text-white' : ''
+                          active ? "bg-primary-600 text-white" : ""
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">
